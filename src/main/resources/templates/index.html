@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>URL Shortener</title>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                text-align: center; /* 가운데 정렬 */
+                padding: 20px; /* 전체 내용의 간격 설정 */
+            }
+            h1 {
+                margin-top: 50px; /* h1 위의 간격 */
+            }
+            img {
+                width: 100px; /* 이미지 크기 조정 */
+                height: 100px; /* 이미지 크기 조정 */
+            }
+            form, div {
+                margin-top: 20px; /* 각 요소의 상단 간격 */
+            }
+            input[type="text"] {
+                width: 330px;
+                height: 25px;
+            }
+            button {
+                width: 330px;
+                height: 25px;
+            }
+            textarea {
+                width: 330px;
+                height: 90px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>URL Shortener: 해줘</h1>
+            <form role="form" action="/api/v1/shoutUrl" method="post">
+                <div class="form-group">
+                    <div>
+                        <label for="originUrl">Enter URL:</label>
+                    </div>
+                    <textarea type="text" name="originUrl" class="form-control" id="originUrl" placeholder="변경할 주소를 입력하세요"></textarea>
+                    <br>
+                    <button id="submitBtn" class="btn btn-primary">변경</button>
+                </div>
+            </form>
+            <div th:if="${convertUrl}">
+                <br>
+                <span>주소가 생성되었습니다.</span>
+                <br>
+                <input th:value="${convertUrl}" type="text" readonly>
+            </div>
+        </div>
+    </body>
+    <script>
+        // 고쳐 주세요 !!!
+        $(document).ready(function() {
+            $('#submitBtn').click(function() {
+                var originUrl = $('#originUrl').val();
+
+                // 정규식을 사용하여 URL 형식인지 검사
+                var urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+                if (!urlPattern.test(originUrl)) {
+                  alert('유효한 URL을 입력하세요.');
+                  return;
+                } else {
+                    $('#urlForm').submit();
+                }
+            });
+        });
+    </script>
+</html>
