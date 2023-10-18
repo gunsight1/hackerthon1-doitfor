@@ -15,9 +15,9 @@ public class Url extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "origin_url", columnDefinition = "varchar(255)")
+    @Column(name = "origin_url", columnDefinition = "varchar(4000)")
     private String originUrl;
-    @Column(name = "convert_url", columnDefinition = "varchar(255)")
+    @Column(name = "convert_url", columnDefinition = "varchar(4000)")
     private String convertUrl;
 
     @Builder
