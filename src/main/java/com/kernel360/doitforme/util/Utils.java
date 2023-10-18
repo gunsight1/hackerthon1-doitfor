@@ -2,14 +2,16 @@ package com.kernel360.doitforme.util;
 
 public class Utils {
     public static final String domain = "http://localhost:8080/";
-    public static String encode(String originUrl) {
-        // 알고리즘을 사용하여 수정 필요
 
-        return domain + "kernel360";
+    private static UrlGenerator urlGenerator;
+
+    public static String encode(String originUrl) throws Exception {
+        String convertUrl = urlGenerator.encodingUri(originUrl);
+        return domain + convertUrl;
     }
 
     public static String cutOriginUrl(String originUrl) {
-        return originUrl.replaceAll("http://localhost:8080/", "");
+        return originUrl.replaceAll(domain, "");
     }
 
     public static String pasteOriginUrl(String originUrl) {
