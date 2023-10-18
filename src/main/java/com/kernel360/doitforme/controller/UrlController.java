@@ -28,10 +28,9 @@ public class UrlController {
     }
 
     @PostMapping("/api/v1/shoutUrl")
-    public String shoutUrl(@ModelAttribute final UrlRequest urlRequest) {
+    public String shoutUrl(@ModelAttribute final UrlRequest urlRequest) throws Exception {
         UrlResponse urlResponse = urlService.shortUrl(urlRequest);
         String convertUrl = urlResponse.getConvertUrl();
-
         return "redirect:/result?convertUrl="+convertUrl;
     }
 

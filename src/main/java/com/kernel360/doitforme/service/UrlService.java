@@ -16,8 +16,7 @@ public class UrlService {
     private final UrlRepository urlRepository;
 
     @Transactional
-    public UrlResponse shortUrl(final UrlRequest urlRequest) {
-        // 알고리즘을 통해 convertUrl을 생성한다.
+    public UrlResponse shortUrl(final UrlRequest urlRequest) throws Exception {
         String convertUrl = Utils.encode(urlRequest.getOriginUrl());
         Url savedUrl = urlRepository.save(UrlRequest.toEntity(urlRequest, convertUrl));
 
