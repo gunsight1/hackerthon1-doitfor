@@ -19,7 +19,7 @@ public class Utils {
 
     static String ipAddress = localhost.getHostAddress();
 
-    public static final String domain = "3.38.245.93:55535/";
+    public static final String domain = "3.38.245.93:56203/";
 
     private static UrlGenerator urlGenerator;
 
