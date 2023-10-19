@@ -43,7 +43,7 @@
             </div>
             <textarea type="text" name="originUrl" class="form-control" id="originUrl" placeholder="변경할 주소를 입력하세요"></textarea>
             <br>
-            <button id="submitBtn" class="btn btn-primary">변경</button>
+            <button id="submitBtn" class="btn btn-primary" type="button">변경</button>
         </div>
     </form>
     <div th:if="${convertUrl}">
@@ -63,13 +63,14 @@
     $(document).ready(function() {
         $('#submitBtn').click(function() {
             var originUrl = $('#originUrl').val();
-
             // 정규식을 사용하여 URL 형식인지 검사
-            var urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+            var urlPattern = /^(https?:\/\/)?([A-Za-z0-9.-]+)(:[0-9]+)?(\/.*)?$/;
+
+
             if (!urlPattern.test(originUrl)) {
                 alert('유효한 URL을 입력하세요.');
-                return;
             } else {
+                // 유효한 URL이면 경고창을 표시하지 않음
                 $('#urlForm').submit();
             }
         });
