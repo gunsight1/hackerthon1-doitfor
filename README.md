@@ -1,3 +1,7 @@
+![Untitled](https://github.com/Kernel360/hackerthon1-doitfor/assets/103917282/3ba325ba-2c80-4220-a173-cebc879a7e78)
+
+
+
 # 프로젝트 개요
 
 이 프로젝트는 Spring Boot를 사용하여 개발된 웹 애플리케이션입니다. 이 애플리케이션은 다음과 같은 주요 특징을 갖고 있습니다:
