@@ -13,15 +13,17 @@ import java.util.UUID;
 public class UrlGenerator {
 
     public static String generateUniqueId (String originUrl) {
+//
+//        Instant now = Instant.now();
+//        UUID uuid = UUID.randomUUID();
+//        long mostSignBits = uuid.getMostSignificantBits();
+//
+//        String uniqueID = uuid.toString().replace("-", "");
+//        uniqueID += String.valueOf(now.toEpochMilli()).substring(10);
 
-        Instant now = Instant.now();
-        UUID uuid = UUID.randomUUID();
-        long mostSignBits = uuid.getMostSignificantBits();
+//        byte[] sha256Hash = sha256(uniqueID.getBytes(StandardCharsets.UTF_8));
+        byte[] sha256Hash = sha256(originUrl.getBytes(StandardCharsets.UTF_8));
 
-        String uniqueID = uuid.toString().replace("-", "");
-        uniqueID += String.valueOf(now.toEpochMilli()).substring(10);
-
-        byte[] sha256Hash = sha256(uniqueID.getBytes(StandardCharsets.UTF_8));
 
         String uniqueId = bytesToHex(sha256Hash);
 

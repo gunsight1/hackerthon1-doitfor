@@ -12,7 +12,7 @@ spring:
 #    password:
 
   datasource:
-    url: jdbc:mysql://52.78.220.127:53189/kernel360
+    url: jdbc:mysql://3.38.245.93:59585/kernel360
     driver-class-name=com: com.mysql.cj.jdbc.Driver
     username: doitfor
     password: 1q2w3e4r!@
