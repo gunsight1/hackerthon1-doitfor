@@ -17,7 +17,7 @@ public class Url extends BaseEntity {
     private Long id;
     @Column(name = "origin_url", columnDefinition = "varchar(4000)")
     private String originUrl;
-    @Column(name = "convert_url", columnDefinition = "varchar(4000)")
+    @Column(name = "convert_url", columnDefinition = "varchar(4000)", unique = true)
     private String convertUrl;
 
     @Builder
