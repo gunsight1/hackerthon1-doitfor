@@ -1,29 +1,32 @@
 package com.kernel360.doitforme.util;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.UUID;
 
 
 public class UrlGenerator {
 
+    private static MessageDigest md;
+
+    static {
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
     public static String generateUniqueId (String originUrl) {
-//
-//        Instant now = Instant.now();
-//        UUID uuid = UUID.randomUUID();
-//        long mostSignBits = uuid.getMostSignificantBits();
-//
-//        String uniqueID = uuid.toString().replace("-", "");
-//        uniqueID += String.valueOf(now.toEpochMilli()).substring(10);
+        Instant now = Instant.now();
+        UUID uuid = UUID.randomUUID();
+        long mostSignBits = uuid.getMostSignificantBits();
 
-//        byte[] sha256Hash = sha256(uniqueID.getBytes(StandardCharsets.UTF_8));
-        byte[] sha256Hash = sha256(originUrl.getBytes(StandardCharsets.UTF_8));
+        String uniqueID = uuid.toString().replace("-", "");
+        uniqueID += String.valueOf(now.toEpochMilli()).substring(10);
 
+        byte[] sha256Hash = sha256(uniqueID.getBytes(StandardCharsets.UTF_8));
 
         String uniqueId = bytesToHex(sha256Hash);
 
@@ -31,20 +34,12 @@ public class UrlGenerator {
     }
 
     public static String encodingUri (String originUrl) {
-
         String uri = generateUniqueId(originUrl);
-
         return uri;
     }
 
     public static byte[] sha256(byte[] data) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            return md.digest(data);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return md.digest(data);
     }
 
     public static String bytesToHex(byte[] bytes) {

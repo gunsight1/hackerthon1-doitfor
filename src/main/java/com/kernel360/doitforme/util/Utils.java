@@ -1,9 +1,30 @@
 package com.kernel360.doitforme.util;
 
+import org.springframework.beans.factory.annotation.Value;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class Utils {
-    public static final String domain = "http://localhost:8080/";
+
+        static InetAddress localhost;
+
+    static {
+        try {
+            localhost = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static String ipAddress = localhost.getHostAddress();
+
+    public static final String domain = "3.38.245.93:55535/";
 
     private static UrlGenerator urlGenerator;
+
+    public Utils() throws UnknownHostException {
+    }
 
     public static String encode(String originUrl) throws Exception {
         String convertUrl = urlGenerator.encodingUri(originUrl);
